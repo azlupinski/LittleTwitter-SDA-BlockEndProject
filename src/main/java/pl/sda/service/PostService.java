@@ -47,5 +47,13 @@ public class PostService {
         }
     }
 
+    public Post getPostById(Long id){
+        Post post = null;
+        if (postRepository.getPostById(id).isPresent()) {
+             post = postRepository.getPostById(id).get();
+        }
+        return post;
+    }
+
 
 }
