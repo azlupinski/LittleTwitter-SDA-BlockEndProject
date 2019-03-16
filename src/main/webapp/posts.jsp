@@ -29,12 +29,17 @@
                 <div>
                     <h1 style="align-content: flex-start">${tempPost.name} </h1>
                     <h6 style="align-content: flex-end">Author: ${tempPost.user.login} ${tempPost.date}</h6>
+                    <c:url value = "/deletePost" var = "deletePost">
+                        <c:param name = "postId" value = "${tempPost.postId}"/>
+                    </c:url>
+                    <h6> <a href="${deletePost}"> Delete post</a> </h6>
 
 
                 </div>
             </div>
             <div  style="padding:10px" class="panel-body ">${tempPost.postContent}</div>
         </div>
+
 </c:forEach>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>

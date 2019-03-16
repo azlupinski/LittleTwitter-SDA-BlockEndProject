@@ -42,19 +42,19 @@
 <div class="container" style="margin-top:70px">
     <div class="row content">
         <div class="panel panel-default">
-            <div class="panel-heading"><h1>Log In</h1></div>
+            <div class="panel-heading"><h1>add post</h1></div>
             <div class="panel-body">
-                <form class="form-horizontal" action="login" method="post">
+                <form class="form-horizontal" action="/addPost" method="post">
                     <div class="form-group">
-                        <label class="control-label col-sm-2" for="login">Username:</label>
+                        <label class="control-label col-sm-2" for="name">Username:</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="login" placeholder="Enter username" name="login">
+                            <input type="text" class="form-control" id="name" placeholder="enter post name" name="name">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-sm-2" for="pwd">Password:</label>
+                        <label class="control-label col-sm-2" for="postContent">Password:</label>
                         <div class="col-sm-10">
-                            <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="password">
+                            <input type="text" class="form-control" id="postContent" placeholder="Enter password" name="postContent">
                         </div>
                     </div>
                     <div class="form-group">

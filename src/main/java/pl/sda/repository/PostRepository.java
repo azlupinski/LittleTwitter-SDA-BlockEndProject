@@ -51,6 +51,8 @@ public class PostRepository {
     public void save(Post post) {posts.add(post);
     }
 
+    public void delte(Post post) {posts.remove(post);}
+
 //    public boolean userExist(String login) {
 //        return users.stream().anyMatch(user -> user.getLogin().equals(login));
 //    }

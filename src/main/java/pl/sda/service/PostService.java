@@ -40,5 +40,12 @@ public class PostService {
         postRepository.save(post);
     }
 
+    public void deletePost(Long id) {
+        if (postRepository.getPostById(id).isPresent()) {
+            Post post = postRepository.getPostById(id).get();
+           postRepository.delte(post);
+        }
+    }
+
 
 }

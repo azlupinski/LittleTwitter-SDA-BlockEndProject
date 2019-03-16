@@ -29,5 +29,13 @@ public class PostsServlet extends HttpServlet {
         req.getRequestDispatcher("/indexen.jsp").forward(req, resp);
     }
 
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        List<Post> posts = postService.getPosts();
 
+
+        req.setAttribute("posts", posts);
+
+        req.getRequestDispatcher("/indexen.jsp").forward(req, resp);
+    }
 }

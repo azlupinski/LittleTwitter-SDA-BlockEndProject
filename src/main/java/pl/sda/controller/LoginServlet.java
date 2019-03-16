@@ -21,7 +21,6 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
         HttpSession session = req.getSession();
         PrintWriter writer = resp.getWriter();
 
@@ -41,6 +40,6 @@ public class LoginServlet extends HttpServlet {
             req.setAttribute("message", Message.error("Coś poszło nie tak, wygląda na to, że jesteś już zalogowany!"));
         }
 
-        req.getRequestDispatcher("/indexen.jsp").forward(req, resp);
+        req.getRequestDispatcher("/").forward(req, resp);
     }
 }
