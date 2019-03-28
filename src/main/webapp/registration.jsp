@@ -10,6 +10,7 @@
     <title>Hello JSP</title>
 </head>
 <body>
+<%@include file="/WEB-INF/header/navbar.jsp"%>
 <div class="container" style="margin-top:70px">
     <div class="row content">
         <div class="panel panel-default">

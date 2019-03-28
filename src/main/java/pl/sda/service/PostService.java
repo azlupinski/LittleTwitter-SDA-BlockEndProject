@@ -40,14 +40,14 @@ public class PostService {
         postRepository.save(post);
     }
 
-    public void deletePost(Long id) {
+    public void deletePost(String id) {
         if (postRepository.getPostById(id).isPresent()) {
             Post post = postRepository.getPostById(id).get();
            postRepository.delte(post);
         }
     }
 
-    public Post getPostById(Long id){
+    public Post getPostById(String id){
         Post post = null;
         if (postRepository.getPostById(id).isPresent()) {
              post = postRepository.getPostById(id).get();

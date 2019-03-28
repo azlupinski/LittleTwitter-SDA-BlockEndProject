@@ -9,12 +9,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebFilter(filterName = "authority", servletNames = {"addPost"})
+@WebFilter(filterName = "authority", urlPatterns = {"/addPost"})
 public class AuthorityFilter implements Filter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest req = (HttpServletRequest) servletRequest;
         HttpSession session = req.getSession();
+        System.out.println("przeszło do  filtra");
 
         User user = (User) session.getAttribute("user");
 

@@ -20,7 +20,7 @@ public class UserPostValidSystem implements Filter {
         HttpSession session = req.getSession();
 
         User user = (User) session.getAttribute("user");
-        Long postId = Long.valueOf(req.getParameter("postId"));
+        String postId = req.getParameter("postId");
 
         Post post = postService.getPostById(postId);
 

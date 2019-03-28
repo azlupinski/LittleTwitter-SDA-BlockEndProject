@@ -1,22 +1,67 @@
 package pl.sda.model;
 
+import org.bson.Document;
+import org.bson.types.ObjectId;
 import pl.sda.model.enimeration.Role;
 
+import java.util.Objects;
+
 public class User {
-    private Long userId;
+    private String userId;
     private String login;
     private String password;
     private Role role;
+
+    public static final User JohnDoe = new User("123456L", "JOHN DOE", "yadontknow", Role.USER);
+
+    public User(String login, String password, Role role) {
+        this.login = login;
+        this.password = password;
+        this.role = role;
+    }
+
+    public User(String login, String password) {
+        this.login = login;
+        this.password = password;
+    }
+
+    public Document getUserAsDocument(){
+        Document document = new Document("login", login).append("password", password).append("role", role.name());
+        if (Objects.nonNull(userId)){
+            document.append("_id", new ObjectId(userId));
+        }
+        return document;
+    }
+
+    public static User getDocumentAsUser(Document document){
+        if (Objects.nonNull(document)) {
+            String login = document.getString("login");
+            String pasword = document.getString("password");
+            Role role = Role.valueOf(document.getString("role"));
+            ObjectId id = document.getObjectId("_id");
+
+
+            User user = new User(login, pasword, role);
+
+            if (Objects.nonNull(id)) {
+                user.setUserId(id.toString());
+            }
+            return user;
+        } else {
+            return null;
+        }
+    }
+
+
 
     public User() {
 
     }
 
-    public static final User JohnDoe = new User(123456L, "JOHN DOE", "yadontknow", Role.USER);
 
 
 
-    public User(Long userId, String login, String password, Role role) {
+    public User(String userId, String login, String password, Role role) {
         this.userId = userId;
         this.login = login;
         this.password = password;
@@ -51,11 +96,11 @@ public class User {
         this.role = role;
     }
 
-    public Long getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(Long userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 
@@ -82,13 +127,5 @@ public class User {
         return result;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "userId=" + userId +
-                ", login='" + login + '\'' +
-                ", password='" + password + '\'' +
-                ", role=" + role +
-                '}';
-    }
+
 }

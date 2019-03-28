@@ -19,7 +19,7 @@ public class DeletePostServlet extends HttpServlet {
 
 //        HttpSession session = req.getSession();
 
-        Long postId = Long.valueOf(req.getParameter("postId")) ;
+        String postId = req.getParameter("postId") ;
         postService.deletePost(postId);
 
         req.getRequestDispatcher("/").forward(req,resp);

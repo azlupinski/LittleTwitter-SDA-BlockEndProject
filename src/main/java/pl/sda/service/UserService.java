@@ -3,6 +3,9 @@ package pl.sda.service;
 import pl.sda.model.User;
 import pl.sda.repository.UserRepository;
 
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import java.util.Optional;
 
@@ -10,6 +13,7 @@ public class UserService {
 
     private UserRepository userRepository;
     private static UserService instance = null;
+    private RegistrationService registrationService = RegistrationService.getInstance();
 
     public static UserService getInstance() {
         if (instance == null) {
@@ -34,9 +38,12 @@ public class UserService {
         return userRepository.getUsers();
     }
 
-    public User getUserByIdService(Long id){
+    public User getUserByIdService(String id){
         if (userRepository.getUserById(id).isPresent())
         return userRepository.getUserById(id).get();
         else return User.JohnDoe;
     }
+
+
+
 }

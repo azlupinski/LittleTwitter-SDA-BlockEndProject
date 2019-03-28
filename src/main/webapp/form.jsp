@@ -15,27 +15,7 @@
 </head>
 <body>
 
-<nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#">Little twitter</a>
-        </div>
-        <ul class="nav navbar-nav">
-            <li><a href="${pageContext.request.contextPath}/">Home</a></li>
-            <li><a href="#">Add post</a></li>
-            <li><a href="#">User Info</a></li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
-            <c:if test="${not empty sessionScope.user}">
-                <li class="active"><a href="/logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
-            </c:if>
-            <c:if test="${empty sessionScope.user}">
-                <li class="active"><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-            </c:if>
-            <li><a href="#"><span class="glyphicon glyphicon-flash"></span>Register</a></li>
-        </ul>
-    </div>
-</nav>
+<%@include file="/WEB-INF/header/navbar.jsp"%>
 <div class="container" style="margin-top:70px">
     <div class="row content">
         <div class="panel panel-default">

@@ -2,13 +2,20 @@ package pl.sda.model;
 
 
 
+import org.bson.Document;
+import org.bson.types.ObjectId;
+
+
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.Date;
+import java.util.Objects;
 
 public class Post {
 
     private LocalDateTime date;
     private String name;
-    private Long postId;
+    private String postId;
     private String postContent;
     private User user;
 
@@ -16,12 +23,41 @@ public class Post {
     }
 
 
-    public Post(LocalDateTime date, String name, Long postId, String postContent, User user) {
+    public Post(LocalDateTime date, String name, String postId, String postContent, User user) {
         this.date = date;
         this.name = name;
         this.postId = postId;
         this.postContent = postContent;
         this.user = user;
+    }
+
+    public Document getPostAsDocument(){
+        Document document = new Document("name", name).append("postContent", postContent).append("date", date).append("user", user.getUserAsDocument());
+        if (Objects.nonNull(postId)){
+            document.append("_id", new ObjectId(postId));
+        }
+        return document;
+    }
+
+    public static Post getDocumentAsPost(Document document){
+        if (Objects.nonNull(document)) {
+            String name = document.getString("name");
+            String postContent = document.getString("postContent");
+            Date date = document.getDate("date");
+            ObjectId postId = document.getObjectId("_id");
+            User user = User.getDocumentAsUser((Document) document.get("user"));
+            LocalDateTime postDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+
+
+            Post post = new Post(postDate,name,postId.toString(),postContent,user);
+
+            if (Objects.nonNull(postId)) {
+                post.setPostId(postId.toString());
+            }
+            return post;
+        } else {
+            return null;
+        }
     }
 
 
@@ -49,11 +85,11 @@ public class Post {
         this.name = name;
     }
 
-    public Long getPostId() {
+    public String getPostId() {
         return postId;
     }
 
-    public void setPostId(Long postId) {
+    public void setPostId(String postId) {
         this.postId = postId;
     }
 
